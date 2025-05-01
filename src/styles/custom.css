@@ -76,6 +76,7 @@ li:hover {
 
 /* Meta Info */
 p {
+  font-family: "Jost", "Inter", sans-serif;
   font-size: 1rem;
   color: #606f7b;
   margin-bottom: 0.625rem;
