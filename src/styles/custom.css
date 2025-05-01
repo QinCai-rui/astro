@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+
 /* Global Styles */
 body {
   background: #f9fafb;
@@ -76,7 +78,7 @@ li:hover {
 
 /* Meta Info */
 p {
-  font-family: "Jost", "Inter", sans-serif;
+  font-family: "Jost";
   font-size: 1rem;
   color: #606f7b;
   margin-bottom: 0.625rem;
