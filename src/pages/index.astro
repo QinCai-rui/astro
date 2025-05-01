@@ -1,16 +1,30 @@
 ---
+import "../styles/custom.css";
 
+const apiUrl = "http://localhost:54323/wp-json/wp/v2/posts";
+
+async function fetchPosts() {
+  const response = await fetch(apiUrl);
+  return await response.json();
+}
+
+const posts = await fetchPosts();
 ---
-
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<html>
+  <head>
+    <title>Blog - QInCai's Website (Astro Version)</title>
+    <link rel="icon" type="image/x-icon" href="https://i0.wp.com/qincai.xyz/wp-content/uploads/2025/03/cropped-cropped-2142d56d-351f-4087-8f37-f47ddd0e6913-removebg-preview-1-e1723583321653.png">
+  </head>
+  <body>
+    <h1>WordPress Blog Posts</h1>
+    <ul>
+      {posts.map(post => (
+        <li key={post.id}>
+          <a href={`/blog/${post.slug}`}>
+            {post.title.rendered}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </body>
 </html>

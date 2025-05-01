@@ -1,0 +1,43 @@
+---
+import "../../styles/custom.css";
+
+export async function getStaticPaths() {
+  const response = await fetch("http://localhost:54323/wp-json/wp/v2/posts");
+  const posts = await response.json();
+
+  return posts.map(post => ({
+    params: { slug: post.slug },
+  }));
+}
+
+const params = Astro.params;
+const apiUrl = `http://localhost:54323/wp-json/wp/v2/posts?slug=${params.slug}`;
+const response = await fetch(apiUrl);
+const postData = await response.json();
+const post = postData.length ? postData[0] : null;
+const postContent = post?.content?.rendered || "<p>No content available.</p>";
+---
+<html>
+  <head>
+    <title>{post.title.rendered} - QinCai's Website (Astro Version)</title>
+    <link rel="icon" type="image/x-icon" href="https://i0.wp.com/qincai.xyz/wp-content/uploads/2025/03/cropped-cropped-2142d56d-351f-4087-8f37-f47ddd0e6913-removebg-preview-1-e1723583321653.png">
+  </head>
+  <body>
+    {post ? (
+      <>
+        <h1>{post.title.rendered}</h1>
+        <p>{new Date(post.date).toLocaleDateString()}</p>
+
+        <!-- Render featured image if available -->
+        {post.jetpack_featured_media_url ? (
+          <img src={post.jetpack_featured_media_url} alt={post.title.rendered} class="featured-image" />
+        ) : null}
+
+        <div class="blog-content" set:html={postContent}></div>
+      </>
+    ) : (
+      <h1>Post not found.</h1>
+    )}
+  </body>
+</html>
+
