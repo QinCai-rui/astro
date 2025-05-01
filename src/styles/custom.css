@@ -3,24 +3,27 @@ body {
   background: #f9fafb;
   max-width: 800px;
   margin: auto;
-  padding: 32px;
+  padding: 2rem;
   font-family: "Inter", sans-serif;
   color: #2d3748;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Headings */
 h1 {
-  font-size: 32px;
-  font-weight: bold;
+  font-size: 2.5rem;
+  font-weight: 700;
   text-align: center;
   color: #4c51bf;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
 }
 
 /* Blog Content */
 .blog-content {
-  font-size: 18px;
-  line-height: 1.8;
+  font-size: 1.125rem;
+  line-height: 1.75;
   max-width: 720px;
   margin: auto;
   text-align: justify;
@@ -28,19 +31,18 @@ h1 {
 
 /* Links */
 a {
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 600;
   color: #007bff;
   text-decoration: none;
-  padding: 2px 4px;
-  border-radius: 6px;
-  transition: all 0.3s ease-in-out;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 
 a:hover {
   color: #ffffff;
   background: #0056b3;
-  text-decoration: none;
 }
 
 /* Blog Post Cards */
@@ -50,16 +52,16 @@ ul {
 }
 
 li {
-  padding: 12px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 0.75rem;
+  background: #ffffff;
+  border-radius: 0.75rem;
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 li:hover {
   transform: scale(1.03);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0.375rem 1rem rgba(0, 0, 0, 0.15);
 }
 
 /* Featured Images */
@@ -67,28 +69,50 @@ li:hover {
   width: 100%;
   max-width: 720px;
   display: block;
-  margin: 24px auto;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  margin: 1.5rem auto;
+  border-radius: 0.75rem;
+  box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.1);
 }
 
 /* Meta Info */
 p {
-  font-size: 16px;
+  font-size: 1rem;
   color: #606f7b;
-  margin-bottom: 10px;
+  margin-bottom: 0.625rem;
+}
+
+/* Buttons */
+button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: #4c51bf;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out, transform 0.2s ease;
+}
+
+button:hover {
+  background: #3c418d;
+  transform: scale(1.05);
+}
+
+button:active {
+  transform: scale(1);
 }
 
 /* Responsive Styles */
 @media (max-width: 600px) {
   body {
-    padding: 16px;
+    padding: 1rem;
   }
   h1 {
-    font-size: 28px;
+    font-size: 2rem;
   }
   .blog-content {
-    font-size: 16px;
+    font-size: 1rem;
   }
   .featured-image {
     max-width: 100%;
