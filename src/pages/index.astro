@@ -19,7 +19,7 @@ const posts = await fetchPosts();
   </head>
   <body>
     <h1>WordPress Blog Posts</h1>
-    <ul>
+    <ul class="wp-blog-list">
       {posts.map(post => (
         <li key={post.id}>
           <a href={`/blog/${post.slug}`}>
