@@ -48,7 +48,7 @@ a:hover {
 }
 
 /* Blog Post Cards */
-ul {
+.wp-blog-list {
   list-style: none;
   padding: 0;
 }
