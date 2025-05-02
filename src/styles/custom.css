@@ -22,7 +22,6 @@ img {
   max-width: 100%; /* Scale the width to fit within the parent container */
   max-height: 80vh; /* Restrict the height to 80% of the viewport */
   height: auto; /* Maintain aspect ratio */
-/*  width: auto; /* Ensure proportional scaling */
   object-fit: contain; /* Fit the image within its container while maintaining aspect ratio */
   display: block; /* Center alignment adjustments */
   margin: 0 auto; /* Center the image horizontally */
