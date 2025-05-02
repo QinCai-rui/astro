@@ -1,7 +1,9 @@
 ---
+export const prerender = false
+
 import "../styles/custom.css";
 
-const apiUrl = "http://localhost:54323/wp-json/wp/v2/posts";
+const apiUrl = "https://qincai.xyz/wp-json/wp/v2/posts";
 
 async function fetchPosts() {
   const response = await fetch(apiUrl);

@@ -1,8 +1,10 @@
 ---
+export const prerender = false
+
 import "../../styles/custom.css";
 
 export async function getStaticPaths() {
-  const response = await fetch("http://localhost:54323/wp-json/wp/v2/posts");
+  const response = await fetch("https://qincai.xyz/wp-json/wp/v2/posts");
   const posts = await response.json();
 
   return posts.map(post => ({
@@ -11,7 +13,7 @@ export async function getStaticPaths() {
 }
 
 const params = Astro.params;
-const apiUrl = `http://localhost:54323/wp-json/wp/v2/posts?slug=${params.slug}`;
+const apiUrl = `https://qincai.xyz/wp-json/wp/v2/posts?slug=${params.slug}`;
 const response = await fetch(apiUrl);
 const postData = await response.json();
 const post = postData.length ? postData[0] : null;
