@@ -10,7 +10,7 @@ ol, ol li, ul, ul li {
   margin-bottom: 0.625rem;
 }
 
-figure {
+figure > .wp-block-image {
   display: block !important;
   margin-top: 0 !important;
   margin-bottom: 0 !important;
