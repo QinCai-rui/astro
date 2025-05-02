@@ -107,7 +107,7 @@ button:active {
 }
 
 /* Override */
-.wp-block-list
+.wp-block-list,
 .wp-block-list:hover {
   font-family: "Jost";
   font-size: 1rem;
