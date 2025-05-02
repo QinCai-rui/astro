@@ -48,12 +48,12 @@ a:hover {
 }
 
 /* Blog Post Cards */
-.wp-blog-list {
+ul.wp-blog-list {
   list-style: none;
   padding: 0;
 }
 
-.wp-blog-list {
+ul.wp-blog-list li {
   padding: 0.75rem;
   background: #ffffff;
   border-radius: 0.75rem;
@@ -61,7 +61,7 @@ a:hover {
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-.wp-blog-list:hover {
+ul.wp-blog-list li:hover {
   transform: scale(1.03);
   box-shadow: 0 0.375rem 1rem rgba(0, 0, 0, 0.15);
 }
@@ -104,15 +104,6 @@ button:hover {
 
 button:active {
   transform: scale(1);
-}
-
-/* Override */
-.wp-block-list,
-.wp-block-list:hover {
-  font-family: "Jost";
-  font-size: 1rem;
-  color: #606f7b;
-  margin-bottom: 0.625rem;
 }
 
 /* Responsive Styles */
