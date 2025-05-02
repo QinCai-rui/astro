@@ -138,7 +138,8 @@ button:active {
   .blog-content {
     font-size: 1rem;
   }
-  .featured-image {
+  .featured-image,
+  .wp-block-image {
     max-width: 100%;
   }
 }
