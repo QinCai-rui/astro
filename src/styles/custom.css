@@ -1,8 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
 
-/* Reset global list styles for <ol> and <li> */
-ol, ol li {
-  list-style: decimal; /* Keeps the numeric list style for ordered lists */
+/* Reset global list styles for lists */
+ol, ol li, ul, ul li {
   border-radius: 0;
   transform: none;
   font-family: "Jost";
