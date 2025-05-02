@@ -24,7 +24,8 @@ img {
   height: auto; /* Maintain aspect ratio */
   object-fit: contain; /* Fit the image within its container while maintaining aspect ratio */
   display: block; /* Center alignment adjustments */
-  margin: 0 auto; /* Center the image horizontally */
+  margin: 0 auto;
+  margin-left: 0
 }
 
 /* Global Styles */
