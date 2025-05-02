@@ -87,7 +87,7 @@ ol.wp-block-list > li {
   margin-bottom: 0.5rem;
 }
 
-/* Featured Images */
+/* Images */
 .featured-image {
   width: 100%;
   max-width: 720px;
@@ -95,6 +95,13 @@ ol.wp-block-list > li {
   margin: 1.5rem auto;
   border-radius: 0.75rem;
   box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.1);
+}
+
+.wp-block-image {
+  width: 100%;
+  max-width: 720px;
+  display: block;
+  margin: 1.5rem auto;
 }
 
 /* Meta Info */
