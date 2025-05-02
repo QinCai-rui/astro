@@ -106,6 +106,15 @@ button:active {
   transform: scale(1);
 }
 
+/* Override */
+.wp-block-list
+.wp-block-list:hover {
+  font-family: "Jost";
+  font-size: 1rem;
+  color: #606f7b;
+  margin-bottom: 0.625rem;
+}
+
 /* Responsive Styles */
 @media (max-width: 600px) {
   body {
