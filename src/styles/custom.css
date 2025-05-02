@@ -10,6 +10,14 @@ ol, ol li, ul, ul li {
   margin-bottom: 0.625rem;
 }
 
+figure {
+  display: block !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
 img {
   max-width: 100%; /* Scale the width to fit within the parent container */
   max-height: 80vh; /* Restrict the height to 80% of the viewport */
