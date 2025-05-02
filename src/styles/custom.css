@@ -101,6 +101,7 @@ ol.wp-block-list > li {
   max-width: 720px;
   display: block;
   margin: 1.5rem auto;
+  object-fit: contain; /* Ensure the image scales proportionally */
 }
 
 /* Meta Info */
