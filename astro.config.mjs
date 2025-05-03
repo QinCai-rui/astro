@@ -8,6 +8,7 @@ import cloudflare from '@astrojs/cloudflare';
 export default defineConfig({
   integrations: [react()],
 
+  output: "server",
   vite: {
     server: {
       allowedHosts: ['astro.qincai.xyz']
@@ -15,5 +16,4 @@ export default defineConfig({
   },
 
   adapter: cloudflare(),
-  output: "server",
 });
