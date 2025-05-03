@@ -3,17 +3,17 @@ import { defineConfig } from 'astro/config';
 
 import react from "@astrojs/react";
 
-import cloudflare from '@astrojs/cloudflare';
+//import cloudflare from '@astrojs/cloudflare';
 
 export default defineConfig({
   integrations: [react()],
 
-  output: "server",
+//  output: "server",
   vite: {
     server: {
       allowedHosts: ['astro.qincai.xyz']
     }
   },
 
-  adapter: cloudflare(),
+//  adapter: cloudflare(),
 });
