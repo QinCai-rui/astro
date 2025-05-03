@@ -1,32 +1,112 @@
 ---
-export const prerender = false
+export const prerender = false;
 
 import "../styles/custom.css";
+import Navigation from "../components/Navigation.astro";
 
-const apiUrl = "https://qincai.xyz/wp-json/wp/v2/posts";
+const apiUrl = `https://qincai.xyz/wp-json/wp/v2/pages?slug=home`;
 
-async function fetchPosts() {
+let page = null;
+let pageContent = "<p>Page not found.</p>";
+let featuredImageHTML = null;
+
+try {
+  // Fetch the page data
   const response = await fetch(apiUrl);
-  return await response.json();
-}
 
-const posts = await fetchPosts();
+  if (response.ok) {
+    const pageData = await response.json();
+    page = pageData.length ? pageData[0] : null;
+
+    if (page) {
+      pageContent = page.content?.rendered || "<p>No content available.</p>";
+
+      // Attempt to extract the featured image HTML if part of the content
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(pageContent, "text/html");
+      const featuredImageElement = doc.querySelector(".wp-block-post-featured-image img");
+
+      if (featuredImageElement) {
+        featuredImageHTML = featuredImageElement.outerHTML;
+        // Remove the featured image from the main content to avoid duplication
+        featuredImageElement.parentElement.remove();
+        pageContent = doc.body.innerHTML;
+      }
+    }
+  }
+} catch (error) {
+  console.error("Error fetching the home page data:", error);
+}
 ---
+
 <html>
   <head>
-    <title>Blog - QinCai's Website (Astro Version)</title>
-    <link rel="icon" type="image/x-icon" href="https://i0.wp.com/qincai.xyz/wp-content/uploads/2025/03/cropped-cropped-2142d56d-351f-4087-8f37-f47ddd0e6913-removebg-preview-1-e1723583321653.png">
+    <title>{page?.title?.rendered || "Page Not Found"} - QinCai's Website (Astro Version)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="https://qincai.xyz/wp-content/uploads/2025/03/cropped-cropped-2142d56d-351f-4087-8f37-f47ddd0e6913-removebg-preview-1-e1723583321653.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
   </head>
   <body>
-    <h1>WordPress Blog Posts</h1>
-    <ul class="wp-blog-list">
-      {posts.map(post => (
-        <li key={post.id}>
-          <a href={`/blog/${post.slug}`}>
-            {post.title.rendered}
-          </a>
-        </li>
-      ))}
-    </ul>
+    <Navigation />
+    <div class="content-container">
+      {page ? (
+        <>
+          <!-- Render the featured image if available -->
+          {featuredImageHTML ? (
+            <div class="featured-image" set:html={featuredImageHTML}></div>
+          ) : null}
+
+          <h1>{page.title.rendered}</h1>
+          <div class="page-content" set:html={pageContent}></div>
+        </>
+      ) : (
+        <div class="error-container">
+          <h1>Page not found</h1>
+          <p>Sorry, the home page could not be loaded. Please check back later.</p>
+        </div>
+      )}
+    </div>
   </body>
 </html>
+
+<style>
+  /* Add some padding to prevent content from being hidden under the fixed navbar */
+  .content-container {
+    padding-top: 1rem;
+    max-width: 800px;
+    margin: auto;
+  }
+
+  .page-content {
+    font-size: 1.125rem;
+    line-height: 1.75;
+    max-width: 720px;
+    margin: auto;
+    text-align: justify;
+  }
+
+  /* Style the featured image */
+  .featured-image img {
+    width: 100%;
+    max-width: 720px;
+    display: block;
+    margin: 1.5rem auto;
+    border-radius: 0.75rem;
+    box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.1);
+  }
+
+  .error-container {
+    text-align: center;
+    color: #e53e3e;
+    margin-top: 2rem;
+  }
+
+  .error-container h1 {
+    font-size: 2rem;
+  }
+
+  .error-container p {
+    font-size: 1.125rem;
+  }
+</style>
