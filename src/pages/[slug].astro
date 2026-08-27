@@ -1,0 +1,58 @@
+---
+export const prerender = false;
+
+import "../styles/custom.css";
+import Navigation from "../components/Navigation.astro";
+
+// Get the slug from the URL
+const params = Astro.params;
+const apiUrl = `https://qincai.xyz/wp-json/wp/v2/pages?slug=${params.slug}`;
+
+// Fetch the page data
+const response = await fetch(apiUrl);
+const pageData = await response.json();
+
+// Extract the first page from the response
+const page = pageData.length ? pageData[0] : null;
+
+// Fallback content if the page is not found
+const pageContent = page?.content?.rendered || "<p>Page not found.</p>";
+---
+
+<html>
+  <head>
+    <title>{page?.title?.rendered || "Page Not Found"} - QinCai's Website (Astro Version)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="https://i0.wp.com/qincai.xyz/wp-content/uploads/2025/03/cropped-cropped-2142d56d-351f-4087-8f37-f47ddd0e6913-removebg-preview-1-e1723583321653.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <Navigation />
+    <div class="content-container">
+      {page ? (
+        <>
+          <h1>{page.title.rendered}</h1>
+          <div class="page-content" set:html={pageContent}></div>
+        </>
+      ) : (
+        <h1>Page not found.</h1>
+      )}
+    </div>
+  </body>
+</html>
+
+<style>
+  /* Add some padding to prevent content from being hidden under fixed navbar */
+  .content-container {
+    padding-top: 1rem;
+  }
+
+  .page-content {
+    font-size: 1.125rem;
+    line-height: 1.75;
+    max-width: 720px;
+    margin: auto;
+    text-align: justify;
+  }
+</style>

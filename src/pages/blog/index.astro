@@ -1,0 +1,45 @@
+---
+export const prerender = false
+
+import "../../styles/custom.css";
+import Navigation from "../../components/Navigation.astro";
+
+const apiUrl = "https://qincai.xyz/wp-json/wp/v2/posts";
+
+async function fetchPosts() {
+  const response = await fetch(apiUrl);
+  return await response.json();
+}
+
+const posts = await fetchPosts();
+---
+<html>
+  <head>
+    <title>Blog - QinCai's Website (Astro Version)</title>
+    <link rel="icon" type="image/x-icon" href="https://i0.wp.com/qincai.xyz/wp-content/uploads/2025/03/cropped-cropped-2142d56d-351f-4087-8f37-f47ddd0e6913-removebg-preview-1-e1723583321653.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <Navigation />
+    <div class="content-container">
+      <h1>WordPress Blog Posts</h1>
+      <ul class="wp-blog-list">
+        {posts.map(post => (
+          <li key={post.id}>
+            <a href={`/blog/${post.slug}`}>
+              {post.title.rendered}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </body>
+</html>
+
+<style>
+  /* Add some padding to prevent content from being hidden under fixed navbar */
+  .content-container {
+    padding-top: 1rem;
+  }
+</style>
